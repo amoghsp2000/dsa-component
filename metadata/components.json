@@ -1,0 +1,608 @@
+[
+  {
+    "id": "lru-cache",
+    "name": "LRU Cache (Least Recently Used)",
+    "description": "High-performance fixed-capacity key-value cache combining an associative hash map with an intrusive doubly linked list to achieve O(1) reads, writes, and evictions.",
+    "dsa_category": "hash-tables",
+    "secondary_dsa_category": "linked-lists",
+    "use_cases": [
+      "caching-and-memory-management",
+      "api-and-http-processing",
+      "database-optimization",
+      "performance-optimization"
+    ],
+    "difficulty": "Intermediate",
+    "time_complexity": {
+      "get": "O(1)",
+      "put": "O(1)",
+      "delete": "O(1)",
+      "peek": "O(1)"
+    },
+    "space_complexity": "O(capacity)",
+    "when_to_use": [
+      "When memory footprint must be strictly bounded to prevent OOM errors",
+      "When recently accessed items are significantly more likely to be accessed again (temporal locality)",
+      "Caching expensive database queries, external API responses, or computed tokens"
+    ],
+    "when_not_to_use": [
+      "When access patterns follow uniform random distribution (eviction overhead without hit improvements)",
+      "When frequency of access matters more than recency (use LFU instead)"
+    ],
+    "edge_cases": [
+      "Capacity equal to 0 or 1",
+      "Updating an existing key without modifying list capacity",
+      "Re-inserting recently evicted keys",
+      "Handling null/undefined values distinctly from non-existent keys"
+    ],
+    "implementations": {
+      "php": "php/src/LRUCache.php",
+      "javascript": "javascript/src/LRUCache.js",
+      "python": "python/src/lru_cache.py",
+      "java": "java/src/main/java/com/dsatoolbox/LRUCache.java"
+    },
+    "tests": {
+      "php": "tests/php/test_all.php",
+      "javascript": "tests/javascript/test_all.js",
+      "python": "tests/python/test_lru_cache.py",
+      "java": "tests/java/TestAll.java"
+    },
+    "documentation": "docs/components/lru-cache.md",
+    "examples": [
+      "php/examples/high_throughput_lru_cache.php"
+    ]
+  },
+  {
+    "id": "rate-limiter",
+    "name": "Sliding Window Rate Limiter",
+    "description": "Precision rate limiter tracking granular timestamped request arrivals within a rolling time window using a double-ended queue, avoiding boundary bursts common in fixed-window limiters.",
+    "dsa_category": "stacks-and-queues",
+    "secondary_dsa_category": "arrays-and-strings",
+    "use_cases": [
+      "rate-limiting-and-throttling",
+      "api-and-http-processing",
+      "financial-and-payment-systems"
+    ],
+    "difficulty": "Intermediate",
+    "time_complexity": {
+      "allow": "O(k) amortized, where k is expired timestamps pruned",
+      "remaining": "O(1)",
+      "reset": "O(1)"
+    },
+    "space_complexity": "O(max_requests per window per key)",
+    "when_to_use": [
+      "Protecting APIs, recharge endpoints, and payment gateways against burst spikes and brute force",
+      "Guaranteeing strict adherence to third-party provider quotas across continuous sliding intervals",
+      "Enforcing tenant tier limits without sudden boundary reset surges"
+    ],
+    "when_not_to_use": [
+      "Extremely memory-constrained environments with millions of keys and high request limits (consider Token Bucket or Leaky Bucket with counter approximations)",
+      "When rough 1-minute fixed bucketing is acceptable and memory is primary concern"
+    ],
+    "edge_cases": [
+      "Requests arriving with non-monotonic timestamps due to system clock drift",
+      "Bursts exactly at the limit threshold",
+      "Time window boundary rollovers",
+      "Empty queues on first check"
+    ],
+    "implementations": {
+      "php": "php/src/SlidingWindowRateLimiter.php",
+      "javascript": "javascript/src/SlidingWindowRateLimiter.js",
+      "python": "python/src/rate_limiter.py",
+      "java": "java/src/main/java/com/dsatoolbox/SlidingWindowRateLimiter.java"
+    },
+    "tests": {
+      "php": "tests/php/test_all.php",
+      "javascript": "tests/javascript/test_all.js",
+      "python": "tests/python/test_rate_limiter.py",
+      "java": "tests/java/TestAll.java"
+    },
+    "documentation": "docs/components/rate-limiter.md",
+    "examples": [
+      "php/examples/api_rate_limited_gateway.php",
+      "javascript/examples/express_rate_limiter_middleware.js"
+    ]
+  },
+  {
+    "id": "priority-queue",
+    "name": "Priority Queue (Min/Max Binary Heap)",
+    "description": "Array-backed complete binary tree guaranteeing constant-time minimum or maximum element inspection and logarithmic insertion and extraction.",
+    "dsa_category": "trees-and-graphs",
+    "secondary_dsa_category": "arrays-and-strings",
+    "use_cases": [
+      "queue-and-background-job-processing",
+      "scheduling-and-task-management",
+      "real-time-data-processing"
+    ],
+    "difficulty": "Intermediate",
+    "time_complexity": {
+      "push": "O(log n)",
+      "pop": "O(log n)",
+      "peek": "O(1)",
+      "heapify": "O(n)"
+    },
+    "space_complexity": "O(n)",
+    "when_to_use": [
+      "Job queues where urgent background tasks (e.g. VIP recharge, payment webhook) must supersede regular work",
+      "Task schedulers sorting tasks by earliest execution timestamp",
+      "Top-K streaming elements or graph shortest path algorithms (Dijkstra, Prim)"
+    ],
+    "when_not_to_use": [
+      "When random access or arbitrary item deletion by value is frequently required (O(N) search)",
+      "When strictly strict FIFO ordering without priority is needed (use a Circular Queue or Doubly Linked List)"
+    ],
+    "edge_cases": [
+      "Extracting from an empty heap",
+      "Heap containing elements with equal priority",
+      "Custom comparator handling both min-heap and max-heap logic",
+      "Dynamic array resizing without memory leaks"
+    ],
+    "implementations": {
+      "php": "php/src/PriorityQueue.php",
+      "javascript": "javascript/src/PriorityQueue.js",
+      "python": "python/src/priority_queue.py",
+      "java": "java/src/main/java/com/dsatoolbox/PriorityQueue.java"
+    },
+    "tests": {
+      "php": "tests/php/test_all.php",
+      "javascript": "tests/javascript/test_all.js",
+      "python": "tests/python/test_priority_queue.py",
+      "java": "tests/java/TestAll.java"
+    },
+    "documentation": "docs/components/priority-queue.md",
+    "examples": [
+      "php/examples/recharge_billing_pipeline.php",
+      "javascript/examples/job_worker_priority_queue.js"
+    ]
+  },
+  {
+    "id": "trie",
+    "name": "Trie (Prefix Tree)",
+    "description": "Tree data structure where each node represents a prefix character, providing deterministic O(M) search, prefix matching, and autocomplete where M is key length.",
+    "dsa_category": "trees-and-graphs",
+    "secondary_dsa_category": "searching-and-sorting",
+    "use_cases": [
+      "search-and-filtering",
+      "api-and-http-processing",
+      "networking-and-routing"
+    ],
+    "difficulty": "Intermediate",
+    "time_complexity": {
+      "insert": "O(m)",
+      "search": "O(m)",
+      "startsWith": "O(m)",
+      "delete": "O(m)"
+    },
+    "space_complexity": "O(ALPHABET_SIZE * m * n)",
+    "when_to_use": [
+      "Autocomplete and predictive search in product catalogs, user lookup, or recharge billers",
+      "API route matching and URL path prefix resolution",
+      "IP routing (longest prefix match) and phone directory area code resolution"
+    ],
+    "when_not_to_use": [
+      "When keys do not share common prefixes, leading to sparse trees with high memory overhead",
+      "When exact-match-only is needed and hash maps provide simpler O(1) performance"
+    ],
+    "edge_cases": [
+      "Inserting empty string",
+      "Searching for prefix that is not a complete terminal word",
+      "Deleting a word whose prefix belongs to another longer word",
+      "Unicode and multi-byte character support"
+    ],
+    "implementations": {
+      "php": "php/src/Trie.php",
+      "javascript": "javascript/src/Trie.js",
+      "python": "python/src/trie.py",
+      "java": "java/src/main/java/com/dsatoolbox/Trie.java"
+    },
+    "tests": {
+      "php": "tests/php/test_all.php",
+      "javascript": "tests/javascript/test_all.js",
+      "python": "tests/python/test_trie.py",
+      "java": "tests/java/TestAll.java"
+    },
+    "documentation": "docs/components/trie.md",
+    "examples": [
+      "php/examples/api_rate_limited_gateway.php"
+    ]
+  },
+  {
+    "id": "bloom-filter",
+    "name": "Bloom Filter",
+    "description": "Space-efficient probabilistic bit array utilizing multiple independent hash functions to test set membership with zero false negatives and tunable false positive probability.",
+    "dsa_category": "advanced-data-structures",
+    "secondary_dsa_category": "bit-manipulation",
+    "use_cases": [
+      "data-deduplication-and-validation",
+      "database-optimization",
+      "financial-and-payment-systems",
+      "caching-and-memory-management"
+    ],
+    "difficulty": "Advanced",
+    "time_complexity": {
+      "add": "O(k), where k is number of hash functions",
+      "contains": "O(k)",
+      "clear": "O(m/64)"
+    },
+    "space_complexity": "O(m) bits",
+    "when_to_use": [
+      "Preventing duplicate transaction and recharge processing prior to touching expensive databases",
+      "Negative cache lookup to protect databases from queries on non-existent keys (preventing cache penetration)",
+      "Deduplicating billions of crawled URLs or logs in limited memory"
+    ],
+    "when_not_to_use": [
+      "When false positives cannot be tolerated under any circumstances",
+      "When items must be deleted dynamically (standard Bloom filter doesn't support deletion; use Counting Bloom Filter instead)"
+    ],
+    "edge_cases": [
+      "Bit saturation when element count exceeds expected capacity, causing false positive rate to spike",
+      "Hash collisions between distinct items",
+      "Sizing bit array and hash count based on mathematical error rate formulas"
+    ],
+    "implementations": {
+      "php": "php/src/BloomFilter.php",
+      "javascript": "javascript/src/BloomFilter.js",
+      "python": "python/src/bloom_filter.py",
+      "java": "java/src/main/java/com/dsatoolbox/BloomFilter.java"
+    },
+    "tests": {
+      "php": "tests/php/test_all.php",
+      "javascript": "tests/javascript/test_all.js",
+      "python": "tests/python/test_bloom_filter.py",
+      "java": "tests/java/TestAll.java"
+    },
+    "documentation": "docs/components/bloom-filter.md",
+    "examples": [
+      "php/examples/payment_deduplication_engine.php",
+      "python/examples/payment_dedup_service.py"
+    ]
+  },
+  {
+    "id": "consistent-hashing",
+    "name": "Consistent Hash Ring",
+    "description": "Distributed hashing scheme mapping keys and servers to a 360-degree hash ring using virtual nodes, ensuring minimal key relocation when nodes are added or removed.",
+    "dsa_category": "advanced-data-structures",
+    "secondary_dsa_category": "searching-and-sorting",
+    "use_cases": [
+      "distributed-systems",
+      "caching-and-memory-management",
+      "networking-and-routing"
+    ],
+    "difficulty": "Advanced",
+    "time_complexity": {
+      "addNode": "O(v * log(N * v)) where v is virtual nodes and N is server count",
+      "removeNode": "O(v * log(N * v))",
+      "getNode": "O(log(N * v)) via binary search on ring"
+    },
+    "space_complexity": "O(N * v)",
+    "when_to_use": [
+      "Distributing cache keys or user sessions across a dynamic cluster of Redis/Memcached servers",
+      "Microservice sharding and load balancing with sticky session affinity",
+      "Minimizing cache eviction cascades during cluster scaling events"
+    ],
+    "when_not_to_use": [
+      "Single-node or static deployments where simple modulo hashing (`hash(key) % N`) is sufficient",
+      "Systems with strict leader-follower replication requiring consensus (e.g. Raft)"
+    ],
+    "edge_cases": [
+      "Zero nodes registered in the ring",
+      "Uneven hash distribution mitigated by configuring virtual replica counts",
+      "Removing a non-existent node",
+      "Wrap-around ring boundaries when key hash exceeds maximum server hash"
+    ],
+    "implementations": {
+      "php": "php/src/ConsistentHash.php",
+      "javascript": "javascript/src/ConsistentHash.js",
+      "python": "python/src/consistent_hash.py",
+      "java": "java/src/main/java/com/dsatoolbox/ConsistentHash.java"
+    },
+    "tests": {
+      "php": "tests/php/test_all.php",
+      "javascript": "tests/javascript/test_all.js",
+      "python": "tests/python/test_consistent_hash.py",
+      "java": "tests/java/TestAll.java"
+    },
+    "documentation": "docs/components/consistent-hashing.md",
+    "examples": [
+      "php/examples/high_throughput_lru_cache.php"
+    ]
+  },
+  {
+    "id": "sliding-window",
+    "name": "Monotonic Deque (Sliding Window Extremes)",
+    "description": "Double-ended monotonic queue maintaining elements in strictly decreasing or increasing order to compute sliding window minimums, maximums, and statistics in O(1) amortized time.",
+    "dsa_category": "stacks-and-queues",
+    "secondary_dsa_category": "arrays-and-strings",
+    "use_cases": [
+      "real-time-data-processing",
+      "logging-and-monitoring",
+      "financial-and-payment-systems",
+      "performance-optimization"
+    ],
+    "difficulty": "Intermediate",
+    "time_complexity": {
+      "push": "O(1) amortized",
+      "pop": "O(1)",
+      "getMax": "O(1)",
+      "getMin": "O(1)"
+    },
+    "space_complexity": "O(w) where w is window size",
+    "when_to_use": [
+      "Calculating continuous 5-minute peak transaction latency or maximum recharge amount in a streaming pipeline",
+      "Real-time fraud spike detection over sliding transaction windows",
+      "Algorithmic trading metrics (moving Bollinger bands, sliding maximum drawdowns)"
+    ],
+    "when_not_to_use": [
+      "When the window size is dynamic and requires random element removals by ID",
+      "When cumulative sums or averages are required (use Prefix Sums instead)"
+    ],
+    "edge_cases": [
+      "Stream window smaller than window size",
+      "Duplicate values equal to current extremum",
+      "Monotonically strictly decreasing or strictly increasing streams"
+    ],
+    "implementations": {
+      "php": "php/src/SlidingWindow.php",
+      "javascript": "javascript/src/SlidingWindow.js",
+      "python": "python/src/sliding_window.py",
+      "java": "java/src/main/java/com/dsatoolbox/SlidingWindow.java"
+    },
+    "tests": {
+      "php": "tests/php/test_all.php",
+      "javascript": "tests/javascript/test_all.js",
+      "python": "tests/python/test_sliding_window.py",
+      "java": "tests/java/TestAll.java"
+    },
+    "documentation": "docs/components/sliding-window.md",
+    "examples": [
+      "python/examples/metrics_sliding_window.py"
+    ]
+  },
+  {
+    "id": "union-find",
+    "name": "Disjoint Set Union (Union-Find)",
+    "description": "High-efficiency partition tracking structure with path compression and union-by-rank, providing near-constant time O(alpha(n)) equivalence queries and set mergers.",
+    "dsa_category": "advanced-data-structures",
+    "secondary_dsa_category": "trees-and-graphs",
+    "use_cases": [
+      "networking-and-routing",
+      "distributed-systems",
+      "transaction-processing"
+    ],
+    "difficulty": "Intermediate",
+    "time_complexity": {
+      "find": "O(alpha(n)) near O(1)",
+      "union": "O(alpha(n)) near O(1)",
+      "connected": "O(alpha(n)) near O(1)"
+    },
+    "space_complexity": "O(n)",
+    "when_to_use": [
+      "Detecting circular transaction networks and fraud rings where money loops across suspicious accounts",
+      "Dynamic network connectivity tracking and cluster partition analysis",
+      "Kruskal's Minimum Spanning Tree algorithm for cost-optimized server wiring"
+    ],
+    "when_not_to_use": [
+      "When edge weights or shortest paths are needed (use Dijkstra or Bellman-Ford)",
+      "When sets must be dynamically split or isolated elements removed (classical Disjoint Set does not support easy separation)"
+    ],
+    "edge_cases": [
+      "Querying non-existent nodes",
+      "Connecting an element to itself (noop)",
+      "Deep uncompressed trees without union-by-rank fallback",
+      "Cycle detection when an edge connects two elements already in the same root"
+    ],
+    "implementations": {
+      "php": "php/src/UnionFind.php",
+      "javascript": "javascript/src/UnionFind.js",
+      "python": "python/src/union_find.py",
+      "java": "java/src/main/java/com/dsatoolbox/UnionFind.java"
+    },
+    "tests": {
+      "php": "tests/php/test_all.php",
+      "javascript": "tests/javascript/test_all.js",
+      "python": "tests/python/test_union_find.py",
+      "java": "tests/java/TestAll.java"
+    },
+    "documentation": "docs/components/union-find.md",
+    "examples": [
+      "php/examples/payment_deduplication_engine.php"
+    ]
+  },
+  {
+    "id": "doubly-linked-list",
+    "name": "Doubly Linked List",
+    "description": "Bidirectional sequential data structure supporting O(1) prepend, append, and node removal given a node reference, serving as the foundational backbone for LRU caches and queues.",
+    "dsa_category": "linked-lists",
+    "secondary_dsa_category": "stacks-and-queues",
+    "use_cases": [
+      "caching-and-memory-management",
+      "queue-and-background-job-processing"
+    ],
+    "difficulty": "Beginner",
+    "time_complexity": {
+      "prepend": "O(1)",
+      "append": "O(1)",
+      "removeNode": "O(1)",
+      "popFirst": "O(1)",
+      "popLast": "O(1)"
+    },
+    "space_complexity": "O(n)",
+    "when_to_use": [
+      "Building composite structures like LRU Caches or LFU Caches requiring constant-time arbitrary node detachment and re-attachment",
+      "Deque implementations requiring fast insertions and deletions at both ends without array copy overhead"
+    ],
+    "when_not_to_use": [
+      "When random indexed access (`get(index)`) is frequent (O(N) traversal vs O(1) array access)",
+      "When memory footprint per element is critical (pointers incur 2x-3x memory overhead)"
+    ],
+    "edge_cases": [
+      "Operations on empty list",
+      "Removing head or tail node",
+      "List containing only one single element",
+      "Dangling pointers during detachment"
+    ],
+    "implementations": {
+      "php": "php/src/DoublyLinkedList.php",
+      "javascript": "javascript/src/DoublyLinkedList.js",
+      "python": "python/src/doubly_linked_list.py",
+      "java": "java/src/main/java/com/dsatoolbox/DoublyLinkedList.java"
+    },
+    "tests": {
+      "php": "tests/php/test_all.php",
+      "javascript": "tests/javascript/test_all.js",
+      "python": "tests/python/test_doubly_linked_list.py",
+      "java": "tests/java/TestAll.java"
+    },
+    "documentation": "docs/components/doubly-linked-list.md",
+    "examples": [
+      "php/examples/high_throughput_lru_cache.php"
+    ]
+  },
+  {
+    "id": "binary-search",
+    "name": "Binary Search & Bound Locator",
+    "description": "Logarithmic search algorithm over sorted sequences providing exact match lookup, lower bound (first index >= target), and upper bound (first index > target) queries.",
+    "dsa_category": "searching-and-sorting",
+    "secondary_dsa_category": "arrays-and-strings",
+    "use_cases": [
+      "database-optimization",
+      "search-and-filtering",
+      "financial-and-payment-systems"
+    ],
+    "difficulty": "Beginner",
+    "time_complexity": {
+      "find": "O(log n)",
+      "lowerBound": "O(log n)",
+      "upperBound": "O(log n)"
+    },
+    "space_complexity": "O(1)",
+    "when_to_use": [
+      "Looking up transaction logs within timestamp ranges in indexed in-memory tables",
+      "Finding applicable discount tier, tax bracket, or billing fee based on numerical recharge thresholds",
+      "Fast sorted catalog filtering"
+    ],
+    "when_not_to_use": [
+      "Unsorted data where the cost of sorting (O(n log n)) exceeds linear scan (O(n))",
+      "Linked lists without direct random access (binary search degrades to O(n))"
+    ],
+    "edge_cases": [
+      "Integer overflow during midpoint calculation `(low + high) / 2`",
+      "Target smaller than first element or larger than last element",
+      "Arrays with duplicate matching elements",
+      "Empty arrays"
+    ],
+    "implementations": {
+      "php": "php/src/BinarySearch.php",
+      "javascript": "javascript/src/BinarySearch.js",
+      "python": "python/src/binary_search.py",
+      "java": "java/src/main/java/com/dsatoolbox/BinarySearch.java"
+    },
+    "tests": {
+      "php": "tests/php/test_all.php",
+      "javascript": "tests/javascript/test_all.js",
+      "python": "tests/python/test_binary_search.py",
+      "java": "tests/java/TestAll.java"
+    },
+    "documentation": "docs/components/binary-search.md",
+    "examples": [
+      "php/examples/recharge_billing_pipeline.php"
+    ]
+  },
+  {
+    "id": "prefix-sum",
+    "name": "Prefix Sum & Range Query Engine",
+    "description": "Preprocessing technique storing running cumulative totals to answer range sum queries over arbitrary intervals in strictly O(1) time.",
+    "dsa_category": "arrays-and-strings",
+    "use_cases": [
+      "financial-and-payment-systems",
+      "logging-and-monitoring",
+      "performance-optimization"
+    ],
+    "difficulty": "Beginner",
+    "time_complexity": {
+      "build": "O(n)",
+      "queryRange": "O(1)",
+      "query2D": "O(1)"
+    },
+    "space_complexity": "O(n)",
+    "when_to_use": [
+      "Instantaneous calculation of user recharge totals or revenue between two dates",
+      "Aggregating request counts and error telemetry over arbitrary time slices without looping",
+      "Financial ledger auditing and balance reconciliation across transaction indices"
+    ],
+    "when_not_to_use": [
+      "Frequently mutated arrays where each update requires recomputing prefix sums in O(n) time (use a Fenwick Tree / Binary Indexed Tree or Segment Tree instead)"
+    ],
+    "edge_cases": [
+      "Out of bounds index requests",
+      "Query where start index is 0",
+      "Single element range query",
+      "64-bit integer overflow during massive financial accumulations"
+    ],
+    "implementations": {
+      "php": "php/src/PrefixSum.php",
+      "javascript": "javascript/src/PrefixSum.js",
+      "python": "python/src/prefix_sum.py",
+      "java": "java/src/main/java/com/dsatoolbox/PrefixSum.java"
+    },
+    "tests": {
+      "php": "tests/php/test_all.php",
+      "javascript": "tests/javascript/test_all.js",
+      "python": "tests/python/test_prefix_sum.py",
+      "java": "tests/java/TestAll.java"
+    },
+    "documentation": "docs/components/prefix-sum.md",
+    "examples": [
+      "php/examples/payment_deduplication_engine.php"
+    ]
+  },
+  {
+    "id": "retry-queue",
+    "name": "Retry Queue with Exponential Backoff & Full Jitter",
+    "description": "Resilient retry orchestration mechanism utilizing a min-heap priority queue and exponential backoff with full jitter to prevent thundering herd problems during upstream outages.",
+    "dsa_category": "stacks-and-queues",
+    "secondary_dsa_category": "greedy-algorithms",
+    "use_cases": [
+      "queue-and-background-job-processing",
+      "financial-and-payment-systems",
+      "api-and-http-processing"
+    ],
+    "difficulty": "Intermediate",
+    "time_complexity": {
+      "enqueue": "O(log n)",
+      "pollReady": "O(log n) when items ready, O(1) peek when not",
+      "peekNextDue": "O(1)"
+    },
+    "space_complexity": "O(n)",
+    "when_to_use": [
+      "Retrying transiently failed payment webhooks, telecom recharge dispatches, and third-party bank API calls",
+      "Preventing server self-inflicted DDoS after recovering from a service outage (decorrelated jitter)",
+      "Dead-letter queue (DLQ) routing after exhausting maximum retry thresholds"
+    ],
+    "when_not_to_use": [
+      "Non-idempotent operations where re-executing could cause duplicate state side-effects without deduplication",
+      "Permanent client errors (e.g. 400 Bad Request, 401 Unauthorized) that will never succeed on retry"
+    ],
+    "edge_cases": [
+      "Exponential backoff calculation exceeding maximum backoff cap (capping required)",
+      "Clock shifts or negative retry delays",
+      "Reaching max retry attempts and routing to dead letter handler",
+      "Concurrent or out-of-order execution readiness"
+    ],
+    "implementations": {
+      "php": "php/src/RetryQueue.php",
+      "javascript": "javascript/src/RetryQueue.js",
+      "python": "python/src/retry_queue.py",
+      "java": "java/src/main/java/com/dsatoolbox/RetryQueue.java"
+    },
+    "tests": {
+      "php": "tests/php/test_all.php",
+      "javascript": "tests/javascript/test_all.js",
+      "python": "tests/python/test_retry_queue.py",
+      "java": "tests/java/TestAll.java"
+    },
+    "documentation": "docs/components/retry-queue.md",
+    "examples": [
+      "php/examples/recharge_billing_pipeline.php"
+    ]
+  }
+]

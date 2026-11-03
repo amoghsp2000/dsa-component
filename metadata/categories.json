@@ -1,0 +1,69 @@
+[
+  {
+    "id": "arrays-and-strings",
+    "name": "Arrays and Strings",
+    "description": "Contiguous memory structures and sequence algorithms for fast indexed access, slicing, windowing, and transformation.",
+    "characteristics": ["O(1) random access", "Cache locality", "Contiguous allocation", "Prefix and window operations"]
+  },
+  {
+    "id": "hash-tables",
+    "name": "Hash Tables",
+    "description": "Associative key-value structures utilizing hashing functions to provide expected amortized O(1) lookup, insertion, and deletion.",
+    "characteristics": ["Expected O(1) lookup", "Key hashing", "Collision resolution (chaining / open addressing)", "Fast membership testing"]
+  },
+  {
+    "id": "linked-lists",
+    "name": "Linked Lists",
+    "description": "Dynamic sequential data structures where elements point to their successor and/or predecessor nodes, enabling O(1) insertion and deletion at known positions.",
+    "characteristics": ["O(1) insertion/deletion at pointers", "Dynamic memory growth", "Non-contiguous storage", "Bidirectional or unidirectional traversal"]
+  },
+  {
+    "id": "stacks-and-queues",
+    "name": "Stacks and Queues",
+    "description": "Linear abstract data types governing First-In-First-Out (FIFO) or Last-In-First-Out (LIFO) access, monotonic properties, and deque operations.",
+    "characteristics": ["LIFO (Stack) / FIFO (Queue)", "Monotonic queues for extreme queries", "Buffering and scheduling primitives"]
+  },
+  {
+    "id": "trees-and-graphs",
+    "name": "Trees and Graphs",
+    "description": "Hierarchical and network data structures representing nodes and edges, including Binary Search Trees, Heaps, Tries, and adjacency graphs.",
+    "characteristics": ["Hierarchical relationships", "Cyclic and acyclic traversal (BFS, DFS)", "Shortest path and spanning tree models"]
+  },
+  {
+    "id": "searching-and-sorting",
+    "name": "Searching and Sorting",
+    "description": "Algorithms designed to locate elements in ordered and unordered data collections, reorder sequences, and partition spaces efficiently.",
+    "characteristics": ["Divide and conquer", "Logarithmic search boundaries", "Comparison-based and non-comparison sorting"]
+  },
+  {
+    "id": "recursion-and-backtracking",
+    "name": "Recursion and Backtracking",
+    "description": "Algorithmic strategies solving problems by decomposing into sub-problems and systematically exploring state spaces with pruning.",
+    "characteristics": ["Call stack state persistence", "State space tree exploration", "Constraint satisfaction and pruning"]
+  },
+  {
+    "id": "greedy-algorithms",
+    "name": "Greedy Algorithms",
+    "description": "Optimization paradigms making locally optimal choices at each stage with the expectation of finding a global optimum.",
+    "characteristics": ["Optimal substructure", "Greedy choice property", "High runtime efficiency"]
+  },
+  {
+    "id": "dynamic-programming",
+    "name": "Dynamic Programming",
+    "description": "Algorithmic technique solving complex problems by breaking them into overlapping subproblems and storing intermediate solutions (memoization or tabulation).",
+    "characteristics": ["Overlapping subproblems", "Optimal substructure", "Memoization / Bottom-up tabulation"]
+  },
+  {
+    "id": "bit-manipulation",
+    "name": "Bit Manipulation",
+    "description": "Low-level bitwise operations operating directly on binary representations of integers for ultra-fast, zero-overhead computation.",
+    "characteristics": ["Bit masks", "Bit shifting", "Compact space representation", "Hardware-accelerated speed"]
+  },
+  {
+    "id": "advanced-data-structures",
+    "name": "Advanced Data Structures",
+    "description": "Specialized data structures combining multiple primitives to solve domain-specific problems, such as Disjoint-Set Union, Bloom Filters, and Consistent Hash Rings.",
+    "characteristics": ["Hybrid compositions", "Near constant-time inverse Ackermann complexity", "Probabilistic space savings", "Distributed node partitioning"]
+  }
+]
+

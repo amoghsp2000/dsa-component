@@ -1,0 +1,174 @@
+[
+  {
+    "id": "caching-and-memory-management",
+    "name": "Caching and Memory Management",
+    "description": "Techniques for in-memory temporary storage, fast key-value retrieval, eviction policies, and cache hit-ratio maximization.",
+    "challenges_solved": [
+      "Mitigating database load through hot-key caching",
+      "Bounding in-memory footprint to avoid Out-Of-Memory (OOM) crashes",
+      "Deterministic cache eviction using LRU/LFU heuristics"
+    ]
+  },
+  {
+    "id": "database-optimization",
+    "name": "Database Optimization",
+    "description": "Techniques for reducing I/O operations, range filtering, indexing mechanisms, and avoiding unnecessary full table scans.",
+    "challenges_solved": [
+      "Preventing cache stampedes and expensive cold queries",
+      "Fast logarithmic index queries on ordered data",
+      "Negative database lookup elimination using Bloom Filters"
+    ]
+  },
+  {
+    "id": "api-and-http-processing",
+    "name": "API and HTTP Processing",
+    "description": "High-throughput request handling, path routing, header matching, and response caching for REST and RPC gateways.",
+    "challenges_solved": [
+      "Sub-millisecond API route matching using Prefix Trees (Tries)",
+      "Idempotency validation for incoming webhooks and requests",
+      "Traffic shaping and backpressure mechanisms"
+    ]
+  },
+  {
+    "id": "authentication-and-session-management",
+    "name": "Authentication and Session Management",
+    "description": "Fast token validation, active user session lifecycle management, and permission hierarchy evaluation.",
+    "challenges_solved": [
+      "Constant-time session token invalidation and refresh",
+      "Bounded memory session stores with automatic sliding TTL",
+      "Fast role and capability resolution"
+    ]
+  },
+  {
+    "id": "rate-limiting-and-throttling",
+    "name": "Rate Limiting and Throttling",
+    "description": "Traffic control algorithms that protect services from cascading failure, API abuse, scraping, and DoS attacks.",
+    "challenges_solved": [
+      "Preventing burst surges while enforcing smooth quota consumption",
+      "Sliding window request log accounting with sub-second accuracy",
+      "Distributed and local resource protection"
+    ]
+  },
+  {
+    "id": "queue-and-background-job-processing",
+    "name": "Queue and Background Job Processing",
+    "description": "Asynchronous task ingestion, priority dispatching, consumer coordination, and retry backoff processing.",
+    "challenges_solved": [
+      "Fair and prioritized worker execution based on task urgency/SLA",
+      "Bounded memory in-process message buffering",
+      "Dead letter queue (DLQ) routing and jittered exponential retry"
+    ]
+  },
+  {
+    "id": "transaction-processing",
+    "name": "Transaction Processing",
+    "description": "Ensuring ACID properties, idempotency, sequence verification, and conflict detection in concurrent business workflows.",
+    "challenges_solved": [
+      "Guaranteeing exactly-once execution for financial ledger entries",
+      "Fast circular dependency and fraud ring detection in transaction graphs",
+      "Balance delta computation with prefix sum verification"
+    ]
+  },
+  {
+    "id": "data-deduplication-and-validation",
+    "name": "Data Deduplication and Validation",
+    "description": "Filtering duplicate events, validating incoming payloads, and checking set membership in large datasets with minimal memory.",
+    "challenges_solved": [
+      "Filtering duplicate payment webhook deliveries without heavy database queries",
+      "Probabilistic set membership with negligible memory footprint (Bloom Filters)",
+      "High-throughput stream deduplication"
+    ]
+  },
+  {
+    "id": "search-and-filtering",
+    "name": "Search and Filtering",
+    "description": "Text indexing, autocomplete suggestions, range filtering, and multi-criteria querying.",
+    "challenges_solved": [
+      "Instantaneous prefix-based search suggestions",
+      "Sub-linear item filtering in sorted catalogs",
+      "Fuzzy query optimization"
+    ]
+  },
+  {
+    "id": "logging-and-monitoring",
+    "name": "Logging and Monitoring",
+    "description": "High-velocity metric collection, time-series windowing, moving averages, and anomaly threshold detection.",
+    "challenges_solved": [
+      "Sliding window 99th percentile and peak latency calculations in O(1) amortized time",
+      "High-throughput log buffer rotation",
+      "Aggregating rolling window error rates without unbounded memory growth"
+    ]
+  },
+  {
+    "id": "file-and-data-processing",
+    "name": "File and Data Processing",
+    "description": "Chunking, sorting, parsing, and transforming large datasets, CSVs, and continuous event streams.",
+    "challenges_solved": [
+      "Memory-bounded file streaming and external sorting",
+      "Efficient string tokenization and serialization",
+      "Binary file parsing with bitwise structures"
+    ]
+  },
+  {
+    "id": "scheduling-and-task-management",
+    "name": "Scheduling and Task Management",
+    "description": "Coordinating recurring tasks, cron-like schedules, delayed execution, and SLA-aware workload scheduling.",
+    "challenges_solved": [
+      "O(log n) next-run-time scheduling using min-heaps",
+      "Dynamic task re-prioritization on system load",
+      "Preventing starvation of low-priority background jobs"
+    ]
+  },
+  {
+    "id": "networking-and-routing",
+    "name": "Networking and Routing",
+    "description": "Packet routing, CIDR prefix matching, connection pooling, and mesh topology management.",
+    "challenges_solved": [
+      "Longest prefix match routing for IP tables using Radix / Trie structures",
+      "Dynamic network path connectivity checking using Disjoint Sets",
+      "Load balancing across heterogeneous upstream servers"
+    ]
+  },
+  {
+    "id": "distributed-systems",
+    "name": "Distributed Systems",
+    "description": "State replication, consistent hashing, consensus primitives, and partitioning across distributed server clusters.",
+    "challenges_solved": [
+      "Minimizing rebalancing keys when nodes join or leave a cluster",
+      "Deterministic data placement across cache nodes with virtual replicas",
+      "Cluster membership and partition split detection"
+    ]
+  },
+  {
+    "id": "performance-optimization",
+    "name": "Performance Optimization",
+    "description": "Algorithmic improvements replacing O(N^2) or O(N) hot loops with O(1) or O(log N) optimal implementations.",
+    "challenges_solved": [
+      "Eliminating CPU hotspots in high-traffic request lifecycles",
+      "Replacing quadratic nested loops with sliding window / two pointers",
+      "Zero-overhead range queries with prefix accumulators"
+    ]
+  },
+  {
+    "id": "financial-and-payment-systems",
+    "name": "Financial and Payment Systems",
+    "description": "Handling recharge requests, payment processing, fraud rings, balance ledger calculations, and transaction settlement.",
+    "challenges_solved": [
+      "Preventing double charges via sliding-window idempotency keys",
+      "Immediate balance and revenue range calculations using Prefix Sums",
+      "Exponential backoff and jitter for resilient payment gateway retries",
+      "Detecting circular transaction networks indicating money laundering"
+    ]
+  },
+  {
+    "id": "real-time-data-processing",
+    "name": "Real-Time Data Processing",
+    "description": "Low-latency streaming event processing, windowed statistics, trade execution, and telemetry tracking.",
+    "challenges_solved": [
+      "Maintaining moving maximums and minimums over streaming windows in O(1) amortized time",
+      "Real-time event prioritization based on dynamic market triggers",
+      "Sub-millisecond latency guarantees for telemetry streaming"
+    ]
+  }
+]
+
